@@ -17,9 +17,9 @@ fi
 # Spin up the container
 docker run \
     -it \
-    -v $PWD:/root/catkin_ws \
-    -e CATKIN_WS='/root/catkin_ws' \
-    -w "/root/catkin_ws" \
+    -v $PWD:/developer/catkin_ws \
+    -e CATKIN_WS='/developer/catkin_ws' \
+    -w "/developer/catkin_ws" \
     -v ~/.ssh:/root/.ssh \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

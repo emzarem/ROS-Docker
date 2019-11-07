@@ -8,15 +8,14 @@ RUN apt-get update && apt-get install -y \
     screen \
     iputils-ping
 
+# Add any required ROS packages here -------------------
+RUN apt-get install -y \
+    ros-melodic-video-stream-opencv
+
+# -----------------------------------------------------
+
 # Change to bash
 SHELL ["/bin/bash", "-c"]
-
-# Source ROS setup
-RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-RUN source ~/.bashrc
-
-# Setup screen
-RUN echo "defshell -bash" >> ~/.screenrc
 
 # Setup X forwarding for graphics
 # Replace 1000 with your user / group id  -- id -u <user> && id -g <user>
@@ -30,12 +29,15 @@ RUN export uid=1000 gid=1000 && \
 
 USER developer
 
+# Source ROS setup
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+RUN source ~/.bashrc
+
+# Setup screen
+RUN echo "defshell -bash" >> ~/.screenrc
 
 
 
-# Add any required ROS packages here -------------------
-RUN apt-get install -y \
-    ros-melodic-video-stream-opencv
 
-# -----------------------------------------------------
+
 
